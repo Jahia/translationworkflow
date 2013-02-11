@@ -40,6 +40,8 @@
 
 package org.jahia.modules.translation.initializers;
 
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 import org.jahia.services.content.JCRNodeWrapper;
 import org.jahia.services.content.decorator.JCRSiteNode;
@@ -73,7 +75,7 @@ public class SiteLocaleChoiceListInitializer implements ModuleChoiceListInitiali
         if (node != null) {
             try {
                 JCRSiteNode site = node.getResolveSite();
-                String[] activeLanguageCodes = site.getActiveLanguageCodes();
+                Set<String> activeLanguageCodes = site.getActiveLiveLanguages();
                 List<ChoiceListValue> listValues = new ArrayList<ChoiceListValue>();
                 for (String activeLanguageCode : activeLanguageCodes) {
                     Locale localeFromCode = LanguageCodeConverters.getLocaleFromCode(activeLanguageCode);
