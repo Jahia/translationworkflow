@@ -51,6 +51,11 @@
     <name>Jahia Translate Workflow</name>
     <packaging>bundle</packaging>
     <description>These are the custom module (Jahia Translate Workflow) for running on a Jahia server.</description>
+    <scm>
+        <connection>scm:git:git@github.com:Jahia/translationworkflow.git</connection>
+        <url>scm:git:git@github.com:Jahia/translationworkflow.git</url>
+        <developerConnection>scm:git:git@github.com:Jahia/translationworkflow.git</developerConnection>
+    </scm>
     <repositories>
         <repository>
             <id>jahia-public</id>
