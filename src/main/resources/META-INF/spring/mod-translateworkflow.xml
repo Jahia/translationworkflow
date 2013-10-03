@@ -5,10 +5,18 @@
     <bean name="translationWorkflow" class="org.jahia.services.workflow.WorklowTypeRegistration">
         <property name="type" value="translation"/>
         <property name="definition" value="translation-workflow"/>
+        <property name="canBeUsedForDefault" value="true"/>
+        <property name="defaultPriority" value="1"/>
         <property name="permissions" >
             <map>
-                <entry key="start" value="/repository-permissions/jcr:all_default/jcr:read_default"/>
-                <entry key="request" value="/repository-permissions/jcr:write_default/jcr:modifyProperties_default_$translateTo"/>
+                <entry key="start" value="jcr:read_default"/>
+                <entry key="request" value="jcr:modifyProperties_default_$translateTo"/>
+            </map>
+        </property>
+        <property name="forms">
+            <map>
+                <entry key="start" value="jnt:translationRequest"/>
+                <entry key="request" value="jnt:translationRequest"/>
             </map>
         </property>
     </bean>
