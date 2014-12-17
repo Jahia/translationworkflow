@@ -71,22 +71,16 @@
  */
 package org.jahia.modules.translation.initializers;
 
-import java.util.Set;
-
 import org.apache.log4j.Logger;
 import org.jahia.services.content.JCRNodeWrapper;
 import org.jahia.services.content.decorator.JCRSiteNode;
 import org.jahia.services.content.nodetypes.ExtendedPropertyDefinition;
-import org.jahia.services.content.nodetypes.initializers.ChoiceListInitializer;
 import org.jahia.services.content.nodetypes.initializers.ChoiceListValue;
 import org.jahia.services.content.nodetypes.initializers.ModuleChoiceListInitializer;
 import org.jahia.utils.LanguageCodeConverters;
 
 import javax.jcr.RepositoryException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author rincevent
@@ -106,12 +100,14 @@ public class SiteLocaleChoiceListInitializer implements ModuleChoiceListInitiali
         if (node != null) {
             try {
                 JCRSiteNode site = node.getResolveSite();
-                Set<String> activeLanguageCodes = site.getActiveLiveLanguages();
+                Set<String> activeLanguageCodes = site.getLanguages();
                 List<ChoiceListValue> listValues = new ArrayList<ChoiceListValue>();
                 for (String activeLanguageCode : activeLanguageCodes) {
-                    Locale localeFromCode = LanguageCodeConverters.getLocaleFromCode(activeLanguageCode);
-                    listValues.add(new ChoiceListValue(localeFromCode.getDisplayName(locale), null,
-                            node.getSession().getValueFactory().createValue(activeLanguageCode)));
+                    if (!site.getInactiveLanguages().contains(activeLanguageCode)) {
+                        Locale localeFromCode = LanguageCodeConverters.getLocaleFromCode(activeLanguageCode);
+                        listValues.add(new ChoiceListValue(localeFromCode.getDisplayName(locale), null,
+                                node.getSession().getValueFactory().createValue(activeLanguageCode)));
+                    }
                 }
                 return listValues;
             } catch (RepositoryException e) {
