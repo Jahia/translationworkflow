@@ -1,4 +1,4 @@
 to: #if( $user.properties.get('j:email').string ) ${user.properties.get('j:email').string} #end
-cc-users: previousTaskAssignable
+cc-users: assignableFor(request)
 subject: Your request for translation has been accepted
 text: Your request for translation has been accepted
