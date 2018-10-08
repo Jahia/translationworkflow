@@ -164,7 +164,7 @@
       <bpmn2:incoming>SequenceFlow_7</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
-    <bpmn2:sequenceFlow id="SequenceFlow_5" drools:priority="1" name="reject" sourceRef="ExclusiveGateway_1" targetRef="ExclusiveGateway_2">
+    <bpmn2:sequenceFlow id="SequenceFlow_5" drools:priority="2" name="reject" sourceRef="ExclusiveGateway_1" targetRef="ExclusiveGateway_2">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1" language="http://www.mvel.org/2.0">publicationOutcome == &quot;reject&quot;</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="SequenceFlow_6" drools:priority="1" name="accept" sourceRef="ExclusiveGateway_1" targetRef="Task_1">
